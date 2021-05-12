@@ -27,10 +27,10 @@ export const AddContact = () => {
 						<input
 							type="text"
 							className="form-control"
-							placeholder="Full Name"
-							value={userData ? userData.full_name : ""}
+							placeholder={userData ? userData.full_name : "Full Name"}
+							//value={userData ? userData.full_name : ""}
 							onChange={e => {
-								inputName = e.target.value;
+								userData ? userData.full_name : (inputName = e.target.value);
 							}}
 						/>
 					</div>
@@ -39,10 +39,10 @@ export const AddContact = () => {
 						<input
 							type="email"
 							className="form-control"
-							placeholder="Enter email"
-							value={userData ? userData.email : ""}
+							placeholder={userData ? userData.email : "Enter email"}
+							//value={userData ? userData.email : ""}
 							onChange={e => {
-								inputEmail = e.target.value;
+								userData ? userData.email : (inputEmail = e.target.value);
 							}}
 						/>
 					</div>
@@ -51,10 +51,10 @@ export const AddContact = () => {
 						<input
 							type="phone"
 							className="form-control"
-							placeholder="Enter phone"
-							value={userData ? userData.phone : ""}
+							placeholder={userData ? userData.phone : "Enter phone"}
+							//value={userData ? userData.phone : ""}
 							onChange={e => {
-								inputPhone = e.target.value;
+								userData ? userData.phone : (inputPhone = e.target.value);
 							}}
 						/>
 					</div>
@@ -63,10 +63,10 @@ export const AddContact = () => {
 						<input
 							type="text"
 							className="form-control"
-							placeholder="Enter address"
-							value={userData ? userData.address : ""}
+							placeholder={userData ? userData.address : "Enter address"}
+							//value={userData ? userData.address : ""}
 							onChange={e => {
-								inputAddress = e.target.value;
+								userData ? userData.address : (inputAddress = e.target.value);
 							}}
 						/>
 					</div>
