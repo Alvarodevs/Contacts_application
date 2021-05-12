@@ -21,7 +21,7 @@ export const ContactCard = props => {
 						<Link className="btn" to={`/edit/${props.id}`}>
 							<i className="fas fa-pencil-alt mr-3" />
 						</Link>
-						<button className="btn" onClick={() => props.onDelete()}>
+						<button className="btn" onClick={() => props.onDelete()} id={props.id}>
 							<i className="fas fa-trash-alt" />
 						</button>
 					</div>
