@@ -8,7 +8,7 @@ export const ContactCard = props => {
 		//initialize state here
 	});
 	// const { id } = useParams();
-	console.log(props.id);
+	//console.log(props.id);
 
 	return (
 		<li className="list-group-item">

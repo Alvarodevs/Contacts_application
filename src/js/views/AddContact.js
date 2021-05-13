@@ -12,10 +12,10 @@ export const AddContact = () => {
 	var userData = store.contacts.find(element => element.id == window.location.pathname.substring(1).split("/")[1]);
 	//console.log(userData);
 
-	var inputName = "";
-	var inputEmail = "";
-	var inputPhone = "";
-	var inputAddress = "";
+	var inputName = userData ? userData.full_name : "";
+	var inputEmail = userData ? userData.email : "";
+	var inputPhone = userData ? userData.phone : "";
+	var inputAddress = userData ? userData.address : "";
 
 	return (
 		<div className="container">
@@ -28,9 +28,9 @@ export const AddContact = () => {
 							type="text"
 							className="form-control"
 							placeholder={userData ? userData.full_name : "Full Name"}
-							//value={userData ? userData.full_name : ""}
+							defaultValue={userData ? userData.full_name : ""}
 							onChange={e => {
-								userData ? userData.full_name : (inputName = e.target.value);
+								inputName = e.target.value;
 							}}
 						/>
 					</div>
@@ -40,7 +40,7 @@ export const AddContact = () => {
 							type="email"
 							className="form-control"
 							placeholder={userData ? userData.email : "Enter email"}
-							//value={userData ? userData.email : ""}
+							defaultValue={userData ? userData.email : ""}
 							onChange={e => {
 								userData ? userData.email : (inputEmail = e.target.value);
 							}}
@@ -52,7 +52,7 @@ export const AddContact = () => {
 							type="phone"
 							className="form-control"
 							placeholder={userData ? userData.phone : "Enter phone"}
-							//value={userData ? userData.phone : ""}
+							defaultValue={userData ? userData.phone : ""}
 							onChange={e => {
 								userData ? userData.phone : (inputPhone = e.target.value);
 							}}
@@ -64,7 +64,7 @@ export const AddContact = () => {
 							type="text"
 							className="form-control"
 							placeholder={userData ? userData.address : "Enter address"}
-							//value={userData ? userData.address : ""}
+							defaultValue={userData ? userData.address : ""}
 							onChange={e => {
 								userData ? userData.address : (inputAddress = e.target.value);
 							}}
