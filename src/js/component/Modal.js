@@ -8,20 +8,8 @@ export const Modal = props => {
 	const [state, setState] = useState({
 		//initialize state here
 	});
-	// let { id } = useParams();
 
-	console.log(props);
-
-	// const eraseContact = () => {
-	// 	let myHeaders = new Headers();
-	// 	var requestOptions = {
-	// 		method: "DELETE",
-	// 		headers: myHeaders
-	// 	};
-	// 	fetch(`"https://assets.breatheco.de/apis/fake/contact/alvaro_agenda/${id}"`, requestOptions)
-	// 	.then(response => response.json())
-	// 	.then(result => console.log(result));
-	// },
+	//console.log(props);
 
 	return (
 		<div className="modal" tabIndex="-1" role="dialog" style={{ display: props.show ? "inline-block" : "none" }}>
@@ -51,8 +39,13 @@ export const Modal = props => {
 								Oh no!
 							</button>
 						</Link>
-						<button type="button" className="btn btn-secondary" data-dismiss="modal">
-							{/* onClick={() => {actions.removeContact(id)}}> */}
+						<button
+							type="button"
+							className="btn btn-secondary"
+							data-dismiss="modal"
+							onClick={() => {
+								actions.removeContact(props.id);
+							}}>
 							Do it!
 						</button>
 					</div>

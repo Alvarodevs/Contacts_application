@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { ContactCard } from "../component/ContactCard.js";
 import { Modal } from "../component/Modal";
@@ -9,18 +10,29 @@ export const Contacts = () => {
 	const [state, setState] = useState({
 		showModal: false
 	});
+	//const [currentUserId, setCurrentUserId] = useState();
+	let currentUserId = "";
+	// console.log(userId);
 
 	const allContacts = store.contacts.map((element, index) => {
 		return (
-			<ContactCard
-				key={index}
-				full_name={element.full_name}
-				address={element.address}
-				email={element.email}
-				id={element.id}
-				phone={element.phone}
-				onDelete={() => setState({ showModal: true })}
-			/>
+			<div key={index}>
+				<ContactCard
+					key={index}
+					full_name={element.full_name}
+					address={element.address}
+					email={element.email}
+					id={element.id}
+					phone={element.phone}
+					onDelete={() => setState({ showModal: true })}
+				/>
+				<Modal
+					key={index}
+					show={state.showModal}
+					onClose={() => setState({ showModal: false })}
+					id={element.id}
+				/>
+			</div>
 		);
 	});
 
@@ -40,7 +52,7 @@ export const Contacts = () => {
 					</ul>
 				</div>
 			</div>
-			<Modal show={state.showModal} onClose={() => setState({ showModal: false })} />
+			{/* <Modal show={state.showModal} onClose={() => setState({ showModal: false })} id={store.contacts.id} /> */}
 		</div>
 	);
 };

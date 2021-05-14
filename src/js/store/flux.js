@@ -45,7 +45,11 @@ const getState = ({ getStore, setStore }) => {
 			removeContact: id => {
 				console.log(id);
 				fetch(`'https://assets.breatheco.de/apis/fake/contact/agenda/alvaro_agenda/${id}'`, {
-					method: "DELETE"
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						Accept: "application/json"
+					}
 				})
 					.then(res => res.json())
 					.then(res => console.log(res));
