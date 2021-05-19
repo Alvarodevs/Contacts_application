@@ -9,7 +9,7 @@ export const Modal = props => {
 		//initialize state here
 	});
 
-	//console.log(props);
+	console.log(props);
 
 	return (
 		<div className="modal" tabIndex="-1" role="dialog" style={{ display: props.show ? "inline-block" : "none" }}>
@@ -45,6 +45,7 @@ export const Modal = props => {
 							data-dismiss="modal"
 							onClick={() => {
 								actions.removeContact(props.id);
+								props.onClose();
 							}}>
 							Do it!
 						</button>

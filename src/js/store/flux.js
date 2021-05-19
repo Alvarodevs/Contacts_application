@@ -1,4 +1,4 @@
-const getState = ({ getStore, setStore }) => {
+const getState = ({ getStore, setStore, getActions }) => {
 	return {
 		store: {
 			contacts: [],
@@ -18,10 +18,10 @@ const getState = ({ getStore, setStore }) => {
 					})
 					.catch(err => console.log("Request Failed", err));
 			},
-			addContact: (inputName, inputEmail, inputAddress, inputPhone, id) => {
-				console.log(inputName, inputEmail, inputAddress, inputPhone, id);
+			addContact: (inputName, inputEmail, inputAddress, inputPhone) => {
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
+
 				var raw = JSON.stringify({
 					full_name: inputName,
 					email: inputEmail,
@@ -37,22 +37,42 @@ const getState = ({ getStore, setStore }) => {
 					redirect: "follow"
 				};
 
-				fetch(`"https://assets.breatheco.de/apis/fake/contact/agenda/alvaro_agenda/${id}"`, requestOptions)
+				fetch("https://assets.breatheco.de/apis/fake/contact/", requestOptions)
 					.then(response => response.json())
-					.then(result => console.log(result))
+					.then(result => getActions().getListContacts())
+					.catch(error => console.log("error", error));
+			},
+			updateContact(inputName, inputEmail, inputAddress, inputPhone, id) {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+					full_name: inputName,
+					email: inputEmail,
+					address: inputAddress,
+					phone: inputPhone
+				});
+
+				var requestOptions = {
+					method: "PUT",
+					headers: myHeaders,
+					body: raw,
+					redirect: "follow"
+				};
+
+				fetch(`https://assets.breatheco.de/apis/fake/contact/${id}`, requestOptions)
+					.then(response => response.json())
+					.then(result => getActions().getListContacts())
 					.catch(error => console.log("error", error));
 			},
 			removeContact: id => {
-				console.log(id);
-				fetch(`'https://assets.breatheco.de/apis/fake/contact/agenda/alvaro_agenda/${id}'`, {
-					method: "DELETE",
-					headers: {
-						"Content-Type": "application/json",
-						Accept: "application/json"
-					}
+				fetch(`https://assets.breatheco.de/apis/fake/contact/${id}`, {
+					method: "DELETE"
 				})
 					.then(res => res.json())
-					.then(res => console.log(res));
+					.then(res => {
+						getActions().getListContacts();
+					});
 			}
 		}
 	};
